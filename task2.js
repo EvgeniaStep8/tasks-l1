@@ -15,7 +15,7 @@ const isStrangerNumber = (num) => {
   for (let i = 2; i <= Math.floor(Math.sqrt(num)); i++) {
     if (num % i === 0) {
       res.push(i);
-      // Проверяем не являются ли делимое и делитель одним числом
+      // Проверяем не являются ли делимое и делитель одним числом, чтобы не добавить одно число 2 раза
       if (i !== num / i) {
         res.push(num / i);
       }

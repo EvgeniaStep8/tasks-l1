@@ -1,0 +1,50 @@
+// Анализатор сложности пароля: создайте функцию, которая оценивает сложность введенного пользователем пароля. Необходимо анализировать длину пароля, использование различных символов, наличие чисел и букв в разных регистрах. Выведите пользователю оценку сложности пароля и предложите улучшения, если пароль слишком слабый.
+
+const evaluatePasswordComplexity = (password) => {
+  if (password === "") {
+    return "Введите пароль!";
+  }
+
+  password = String(password);
+
+  const isDifficultLength = password.length > 8 ? 1 : 0;
+  const isPasswordContainsLetter = /[a-z]/g.test(password) ? 1 : 0;
+  const isPasswordContainsNum = /\d/.test(password) ? 1 : 0;
+  const isPasswordContainsdDifferentRegisters =
+    password.toLowerCase() !== password ? 1 : 0;
+  const isPasswordContainsSymbols =
+    /[~\!\?@\#\$%\^&\*_\-\+\(\)\[\]\{\}\>\<\/\\\|"'\.,\:;]/.test(password)
+      ? 1
+      : 0;
+
+  const difficult = `Оценка сложности пароля ${
+    isDifficultLength +
+    isPasswordContainsLetter +
+    isPasswordContainsNum +
+    isPasswordContainsdDifferentRegisters +
+    isPasswordContainsSymbols
+  }/5`;
+
+  if (!isDifficultLength) {
+    return `${difficult}, для увеличения надёжности пароля увеличьте количество символов больше 8!`;
+  } else if (!isPasswordContainsNum) {
+    return `${difficult}, для увеличения надёжности пароль должен содержать хотя бы одну цифру!`;
+  } else if (!isPasswordContainsLetter) {
+    return `${difficult}, для увеличения надёжности пароль должен содержать хотя бы одну латинускую букву!`;
+  } else if (!isPasswordContainsdDifferentRegisters) {
+    return `${difficult}, для увеличения надёжности пароль должен содержать строчные и прописные буквы!`;
+  } else if (!isPasswordContainsSymbols) {
+    return `${difficult}, для увеличения надёжности пароль должен содержать символы: ~!?@#$%^&*_-+()[]{}></\\|"'.,:;!`;
+  } else {
+    return `${difficult}, очень надёжный пароль!`;
+  }
+};
+
+console.log(evaluatePasswordComplexity("password")); // Оценка сложности пароля 1/5, для увеличения надёжности пароля увеличьте количество символов больше 8!
+console.log(evaluatePasswordComplexity("123456789")); // Оценка сложности пароля 2/5, для увеличения надёжности пароль должен содержать хотя бы одну латинускую букву!
+console.log(evaluatePasswordComplexity("passworpassword")); // Оценка сложности пароля 2/5, для увеличения надёжности пароль должен содержать хотя бы одну цифру!
+console.log(evaluatePasswordComplexity("password123")); // Оценка сложности пароля 3/5, для увеличения надёжности пароль должен содержать строчные и прописные буквы!
+console.log(evaluatePasswordComplexity("Password123")); // Оценка сложности пароля 4/5, для увеличения надёжности пароль должен содержать символы: ~!?@#$%^&*_-+()[]{}></\|"'.,:;!
+console.log(evaluatePasswordComplexity("Password123.")); // Оценка сложности пароля 5/5, очень надёжный пароль!
+
+console.log(evaluatePasswordComplexity("")); // Введите пароль!
