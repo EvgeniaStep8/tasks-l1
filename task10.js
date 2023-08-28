@@ -14,32 +14,38 @@ const stringToJson1 = (string) => {
   if (typeof string !== "string") {
     return "Для преобразования необходимо ввести строку!";
   }
-  // регулярное выражение для проверки формата данных
 
-  // убираем {} в начале и конце строки
-  string = string.slice(1, string.length - 1);
-  const res = {};
-  // преобразуем строку в массив по разделителю ,
-  string.split(",").forEach((elem) => {
-    const entries = elem.split(":");
-    entries[0] = entries[0].replaceAll(`"`, "");
-    if (entries[1].startsWith(`"`) && entries[1].endsWith(`"`)) {
-      entries[1] = entries[1].replaceAll(`"`, "");
-    } else if (typeof +entries[1] === "number") {
-      entries[1] = +entries[1];
-    } else if (entries[1].startsWith("[") && entries[1].endsWith("]")) {
-      entries[1] = stringToJson1(entries[1]);
+  if (/^"[^"]*"$/.test(string)) {
+    return string.replaceAll(`"`, "");
+  } else if (!Number.isNaN(+string)) {
+    return +string;
+  } else if (string === "null") {
+    return null;
+  } else if (string.startsWith("[") && string.endsWith("]")) {
+    string = string.slice(1, -1);
+    const res = [];
+    const arr = string.split(",");
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].startsWith(`{`) || arr[i].startsWith(`[`)) {
+        let start = i;
+        while (!(arr[i].endsWith("}") || arr[i].endsWith("]"))) {
+          i++;
+        }
+        let newArr = arr.slice(start, i + 1);
+        res.push(stringToJson1(newArr.join(",")));
+      } else {
+        res.push(stringToJson1(arr[i]));
+      }
     }
-    res[entries[0]] = entries[1];
-  });
-  return res;
+    return res;
+  } else if (string.startsWith("{") && string.endsWith("}")) {
+    const res = {};
+    const arr = string.slice(1, -1);
+    return res;
+  } else {
+    return "Проверьте формат исходных данных";
+  }
 };
 
-console.log(stringToJson(jsonString)); // { name: 'Evgenia', age: 26 }
-console.log(stringToJson1(jsonString)); // { name: 'Evgenia', age: 26 }
-
-console.log(stringToJson(jsonStringWithObject)); // { name: 'Evgenia', age: 26, brother: { name: 'Alex', age: 19 } }
-console.log(stringToJson1(jsonStringWithObject)); // { name: 'Evgenia', age: 26, brother: { name: 'Alex', age: 19 } }
-
-console.log(stringToJson(jsonStringWithArray)); // { name: 'Evgenia', age: 26, brother: { name: 'Alex', age: 19 } }
-console.log(stringToJson1(jsonStringWithArray)); // { name: 'Evgenia', age: 26, brother: { name: 'Alex', age: 19 } }
+console.log(stringToJson(jsonString));
+console.log(stringToJson1(jsonString));
