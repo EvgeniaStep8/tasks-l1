@@ -1,0 +1,43 @@
+h1 {
+  text-align: center;
+}
+
+select {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+table {
+  width: 100%;
+  padding: 0 8%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+td,
+th {
+  padding: 10px;
+  border: 2px solid gray;
+  width: 12%;
+  text-align: center;
+}
+
+th {
+  background: lightgray;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+button {
+  border: none;
+  background: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+button:hover {
+  opacity: 0.7;
+}

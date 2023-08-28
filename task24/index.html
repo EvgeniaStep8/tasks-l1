@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./index.js"></script>
+    <title>Таблица</title>
+  </head>
+  <body>
+    <h1>Таблица</h1>
+    <select name="select" id="select">
+      <option value="base" disabled>-- Sort</option>
+      <option value="fname" selected>By firstname</option>
+      <option value="lname">By lastname</option>
+      <option value="tel">By telephone</option>
+      <option value="address">By address</option>
+      <option value="city">By city</option>
+      <option value="state">By state</option>
+      <option value="zip">By zip</option>
+    </select>
+    <select id="1">
+      <option value="base" disabled>-- Order</option>
+      <option value="ascending" selected>Ascending</option>
+      <option value="descending">Descending</option>
+    </select>
+    <table>
+      <thead>
+        <tr>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Telephone</th>
+          <th>Adress</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Zip</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+    <div class="buttons"></div>
+    <template id="template">
+      <tr id="raw">
+        <td id="fname"></td>
+        <td id="lname"></td>
+        <td id="tel"></td>
+        <td id="adress"></td>
+        <td id="city"></td>
+        <td id="state"></td>
+        <td id="zip"></td>
+      </tr>
+    </template>
+  </body>
+</html>
