@@ -2,6 +2,7 @@
 
 // Односвязный список - это структура данных, состоящая из элементов одного типа, связанных между собой последовательно посредством указателей. Каждый элемент списка имеет указатель на следующий элемент. Последний элемент списка указывает на NULL.
 
+// Массив объектов people для тестирования метода
 const people = [
   { name: "John", job: "Developer" },
   { name: "Sarah", job: "Designer" },
@@ -10,19 +11,27 @@ const people = [
   { name: "Mike", job: "Marketer" },
 ];
 
+// На вход функция принимает массив объектов
 const jsonToSinglyList = (arr) => {
+  // Проверяем явдяется ли введённое значение массивом
   if (!Array.isArray(arr)) {
-    return "На входе функция должна получать JSON, содержащий список объектов!";
+    "На вход функция должна получать JSON, содержащий список объектов!";
   }
+  
+  // Записываем в результирующий массив первый объект полученного на вход массива
   const res = arr[0];
+
+  // Проходимся циклом по каждому элементу массива, для каждого элемента, кроме последнего записываем в свойство next последующий элемент, для последнего элеента записываем в next - null
   for (let i = 0; i < arr.length; i++) {
     if (i !== arr.length - 1) {
       arr[i].next = arr[i + 1];
     } else {
-      arr[i].next = null;
+      arr[i].next  = null;
     }
   }
-  return JSON.stringify(res);
+
+  // Возвращаем получившийся массив
+  return res;
 };
 
-console.log(jsonToSinglyList(people));
+console.log(jsonToSinglyList(people)); // {name:"John", job:"Developer", next:{name:"Sarah", job:"Designer", next:{name:"Tom" ,job:"Manager", next: {name:"Emily",job:"Engineer", next:{name:"Mike", job:"Marketer", next:null}}}}}
