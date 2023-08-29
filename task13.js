@@ -1,11 +1,13 @@
 // Задача на классы и наследование: создайте базовый класс Shape (фигура), который имеет методы для расчета площади и периметра. Затем создайте подклассы, представляющие различные фигуры, такие как прямоугольник, круг и треугольник. Реализуйте методы расчета площади и периметра для каждой фигуры.
 
+// Так как для разных фигур нет универсального метода для расчёта площади и периметра, создам базовый класс с пуствми методами getPerimetr и getArea
 class Shape {
   getPerimetr() {}
 
   getArea() {}
 }
 
+// Подласс для круга Round принимает в конструктор радиус и по формулам расчитывает площадь и периметр
 class Round extends Shape {
   constructor(radius) {
     super();
@@ -21,6 +23,7 @@ class Round extends Shape {
   }
 }
 
+// Подласс для прямоугольника Rectangle принимает в конструктор высоту и ширину и по формулам расчитывает площадь и периметр
 class Rectangle extends Shape {
   constructor(width, height) {
     super();
@@ -37,6 +40,7 @@ class Rectangle extends Shape {
   }
 }
 
+// Подласс для тругольника Triangle принимает в конструктор 3 его стороны и по формулам расчитывает площадь и периметр
 class Triangle extends Shape {
   constructor(a, b, c) {
     super();
@@ -61,13 +65,13 @@ class Triangle extends Shape {
 }
 
 const round = new Round(5);
-console.log(round.getPerimetr());
-console.log(round.getArea());
+console.log(round.getPerimetr()); //31.41592653589793
+console.log(round.getArea()); // 78.53981633974483
 
 const rectangle = new Rectangle(5, 10);
-console.log(rectangle.getPerimetr());
-console.log(rectangle.getArea());
+console.log(rectangle.getPerimetr()); //40
+console.log(rectangle.getArea()); // 50
 
 const triangle = new Triangle(3, 4, 5);
-console.log(triangle.getPerimetr());
-console.log(triangle.getArea());
+console.log(triangle.getPerimetr()); //12
+console.log(triangle.getArea()); //6
