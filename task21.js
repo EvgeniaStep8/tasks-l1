@@ -8,9 +8,8 @@ const reverseFunction = () => {
 };
 
 const reverseFunctionWithNumber = () => {
-  let a = 10;
-  let b = 8;
   i++;
+  let a = 1;
   reverseFunctionWithNumber();
 };
 

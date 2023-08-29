@@ -1,31 +1,33 @@
 // Подсчитать максимальный объем данных, который можно записать в localStorage вашего браузера.
-try {
-  localStorage.setItem("test", "1");
-  localStorage.removeItem("test");
 
-  let maxSize = calculateMaxSize(localStorage);
-  console.log("Максимальный объем данных в localStorage: " + maxSize + " байт");
-} catch (error) {
-  console.log("LocalStorage не поддерживается в этом браузере");
+let step = "";
+
+for (let i = 0; i < 10; i++) {
+  step += "a";
 }
 
-function calculateMaxSize(storage) {
-  let testKey = "test",
-    totalData = "",
-    i = 0;
+console.log(step.length);
 
-  // Увеличиваем размер данных в localStorage до максимума
-  while (true) {
-    try {
-      localStorage.setItem(testKey, totalData);
-      totalData += "a";
-      i++;
-    } catch (error) {
-      // Достигнут максимальный размер данных
-      localStorage.removeItem(testKey);
-      break;
+let testData = "";
+
+for (let i = 0; i < 5242800; i++) {
+  testData += "a";
+}
+
+function getLocalStorageSize() {
+  localStorage.clear();
+
+  try {
+    while (true) {
+      localStorage.setItem("test", testData);
+      testData += step;
     }
+  } catch (err) {
+    console.log(err);
+    console.log(testData.length);
   }
-
-  return i;
 }
+
+getLocalStorageSize();
+
+// 5242880 байт = 5,2 Мбайт
