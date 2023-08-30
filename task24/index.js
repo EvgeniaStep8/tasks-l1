@@ -8,10 +8,11 @@
 const BASE_URL =
   "http://www.filltext.com/?rows=1000&fname=%7BfirstName%7D&lname=%7BlastName%7D&tel=%7Bphone%7Cformat%7D&address=%7BstreetAddress%7D&city=%7Bcity%7D&state=%7BusState%7Cabbr%7D&zip=%7Bzip%7D&pretty=true";
 
-const infoArray = [];
+let infoArray = [];
 const tableBody = document.querySelector("#table-body");
 const buttons = document.querySelector(".buttons");
-const select = document.querySelector("#select");
+const selectField = document.querySelector("#select");
+const selectReverse = document.querySelector("#reverse-select");
 
 const getRowTemplate = (templateSelector, rowSelector) => {
   const row = document
@@ -89,7 +90,7 @@ const sortByAdress = (data, field) => {
     if (parseInt(obj1[field]) !== parseInt(obj2[field])) {
       return parseInt(obj1[field]) - parseInt(obj2[field]);
     } else {
-      obj1[field].toLowerCase() > obj2[field].toLowerCase() ? 1 : -1;
+      return obj1[field].toLowerCase() > obj2[field].toLowerCase() ? 1 : -1;
     }
   });
 };
@@ -98,58 +99,57 @@ const handlerButtonClick = (data, start) => {
   renderFiftyRows(data, start, tableBody);
 };
 
-const addPagination = (data) => {
+const addPagination = (data, container) => {
+  container.innerHTML = "";
   for (let i = 0; i < data.length / 50; i++) {
-    addButton(data, i + 1, buttons);
+    addButton(data, i + 1, container);
   }
 };
 
-const clearButtons = () => {
-  buttons.innerHTML = "";
-};
-
-const handleSelectClick = (data) => {
+const sortBySelectField = (data) => {
   if (
-    select.value === "fname" ||
-    select.value === "lname" ||
-    select.value === "city" ||
-    select.value === "state"
+    selectField.value === "fname" ||
+    selectField.value === "lname" ||
+    selectField.value === "city" ||
+    selectField.value === "state"
   ) {
-    clearButtons();
-    sortByAlphabet(data, select.value);
-    addPagination(data);
-    renderFiftyRows(data, 0, tableBody);
-  } else if (select.value === "zip") {
-    clearButtons();
-    sortByNum(data, select.value);
-    addPagination(data);
-    renderFiftyRows(data, 0, tableBody);
-  } else if (select.value === "tel") {
-    clearButtons();
-    sortByTelephone(data, select.value);
-    addPagination(data);
-    renderFiftyRows(data, 0, tableBody);
-  } else if (select.value === "address") {
-    clearButtons();
-    sortByAdress(data, select.value);
-    addPagination(data);
-    renderFiftyRows(data, 0, tableBody);
+    sortByAlphabet(data, selectField.value);
+  } else if (selectField.value === "zip") {
+    sortByNum(data, selectField.value);
+  } else if (selectField.value === "tel") {
+    sortByTelephone(data, selectField.value);
+  } else if (selectField.value === "address") {
+    sortByAdress(data, selectField.value);
   }
 };
+
+const handleSelectFieldClick = () => {
+  sortBySelectField(infoArray);
+  addPagination(infoArray, buttons);
+  renderFiftyRows(infoArray, 0, tableBody);
+  selectReverse.value = "ascending";
+}
+
+const handleSelectReverseClick = () => {
+  infoArray.reverse();
+  addPagination(infoArray, buttons);
+  renderFiftyRows(infoArray, 0, tableBody);
+}
 
 async function getData() {
   try {
     const result = await fetch(BASE_URL);
     const data = await result.json();
     sortByAlphabet(data, "fname");
-    addPagination(data);
+    addPagination(data, buttons);
     renderFiftyRows(data, 0, tableBody);
-    select.addEventListener("input", () => {
-      handleSelectClick(data);
-    });
+    infoArray = data;
   } catch {
     console.log("err");
   }
 }
 
 getData();
+
+selectField.addEventListener("change", handleSelectFieldClick);
+selectReverse.addEventListener("change", handleSelectReverseClick);
