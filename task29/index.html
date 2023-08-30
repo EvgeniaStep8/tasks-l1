@@ -9,9 +9,8 @@
   </head>
   <body class="page">
     <h1 class="title">Форма</h1>
-    <form class="form" name="form" novalidate>
+    <form class="form" name="form">
       <input
-        id="name"
         type="text"
         name="name"
         class="input"
@@ -19,7 +18,6 @@
         required
       />
       <input
-        id="email"
         type="email"
         name="email"
         class="input"
@@ -27,7 +25,6 @@
         required
       />
       <input
-        id="tel"
         type="tel"
         name="tel"
         class="input"
@@ -36,5 +33,14 @@
       />
       <button class="button" type="submit">Отправить</button>
     </form>
+    <div class="popup">
+      <div class="container">
+        <h2>Форма успешно отправлена</h2>
+        <p>Имя: <span id="name"></span></p>
+        <p>E-mail: <span id="email"></span></p>
+        <p>Телефон: <span id="tel"></span></p>
+        <button class="close">Закрыть</button>
+      </div>
+    </div>
   </body>
 </html>
