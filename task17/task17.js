@@ -2,7 +2,7 @@
 
 const url =
   "https://suggestions.dadata.ru/suggestions/api/4_1/rs/geolocate/address";
-const KEY = "e3ff582f50c0e45b54bcb545150a8c15d523de71";
+const key = "e3ff582f50c0e45b54bcb545150a8c15d523de71";
 
 const query = {
   lat: 55,
@@ -17,7 +17,7 @@ const options = {
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
-    Authorization: "Token " + KEY,
+    Authorization: "Token " + key,
   },
   body: JSON.stringify(query),
 };

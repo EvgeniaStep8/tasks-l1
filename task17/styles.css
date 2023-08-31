@@ -1,0 +1,37 @@
+body {
+  padding: 50px;
+}
+
+form {
+  display: flex;
+  position: relative;
+  gap: 5px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+span {
+  color: gray;
+}
+
+input {
+  line-height: 18px;
+}
+
+button {
+  border-radius: 5px;
+  height: 24px;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+select {
+  position: absolute;
+  top: 18px;
+  height: 24px;
+  width: 100%;
+  visibility: hidden;
+}
