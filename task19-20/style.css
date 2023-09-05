@@ -1,5 +1,5 @@
 .widget {
-  width: 300px;
+  width: 400px;
   height: 500px;
   border-radius: 10px;
   background-color: aliceblue;
@@ -38,9 +38,11 @@
 .text {
   padding: 0;
   margin: 0;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
-  line-height: 16px;
+  line-height: 17px;
+  text-align: justify;
+  white-space: pre-wrap;;
 }
 
 .image {
@@ -59,41 +61,31 @@
   margin-right: 5px;
 }
 
-.likes {
+.icon {
   display: flex;
   align-items: center;
+  padding: 0;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 17px;
+}
+
+.icon::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
 }
 
 .likes::before {
-  content: "";
-  display: block;
-  width: 20px;
-  height: 20px;
   background: url("./images/like.svg") center no-repeat;
 }
 
-.reposts {
-  display: flex;
-  align-items: center;
-}
-
 .reposts::before {
-  content: "";
-  display: block;
-  width: 20px;
-  height: 20px;
   background: url("./images/share.svg") center no-repeat;
 }
 
-.views {
-  display: flex;
-  align-items: center;
-}
-
 .views::before {
-  content: "";
-  display: block;
-  width: 20px;
-  height: 20px;
   background: url("./images/views.svg") center no-repeat;
 }
