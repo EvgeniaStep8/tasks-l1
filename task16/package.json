@@ -1,8 +1,8 @@
 {
-  "name": "tasks-l1",
+  "name": "task16",
   "version": "1.0.0",
   "description": "",
-  "main": "task1.js",
+  "main": "task16.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

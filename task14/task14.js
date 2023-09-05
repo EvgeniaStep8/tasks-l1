@@ -8,9 +8,10 @@ function loadImage(imageUrl) {
     
     // присваиваем src изображению url переданную в функцию
     image.src = imageUrl;
+    image.alt = "Медведь";
 
     image.onload = resolve(image);
-    image.onerror = reject(new Error("Упс, что-то пошло не так..."));
+    image.onerror = reject("Упс, что-то пошло не так...");
   });
 }
 
@@ -19,4 +20,4 @@ loadImage(
   "https://bipbap.ru/wp-content/uploads/2017/08/04.-risunki-dlya-srisovki-legkie-dlya-devochek.jpg"
 )
   .then((image) => document.body.append(image))
-  .catch((err) => console.error(err.message));
+  .catch((err) => console.error(err));

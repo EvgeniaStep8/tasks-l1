@@ -1,10 +1,10 @@
 let i = 0;
 
-// let argument = "<script>document.write(1)</" + "script>";
-let argument = document.write(1);
+let argument = `<script>1;document.write(1)</` + `script>`;
+// let argument = document.write(1);
 const write = () => {
   document.write(argument);
-  argument = document.write(argument);
+  //argument = `<script>1;document.write(${argument})</` + `script>`;
   i++;
   write();
 };
