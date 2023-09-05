@@ -10,17 +10,21 @@
     <h1>Геокодинг</h1>
     <form name="geocoding">
       <label>
-        <span>Широта</span>
-        <input id="lat">
+        <span class="span">Широта</span>
+        <input id="lat" class="input">
       </label>
       <label>
         <span>Долгота</span>
-        <input id="lon">
+        <input id="lon" class="input">
       </label>
       <button type="submit">Поиск</button>
-      <select>
-        <option value="1">1</option>
-      </select>
+      <div class="select"></div>
     </form>
+    <template id="template">
+      <label class="option">
+        <input type="radio" class="radio">
+        <span class="option-text"></span>
+      </label>
+    </template>
   </body>
 </html>

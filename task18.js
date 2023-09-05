@@ -10,10 +10,6 @@ console.log(step.length);
 
 let testData = "";
 
-for (let i = 0; i < 5242800; i++) {
-  testData += "a";
-}
-
 function getLocalStorageSize() {
   localStorage.clear();
 

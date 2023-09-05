@@ -13,12 +13,14 @@ label {
   flex-direction: column;
 }
 
-span {
+.span {
   color: gray;
 }
 
-input {
+.input {
   line-height: 18px;
+  width: 180px;
+  box-sizing: border-box;
 }
 
 button {
@@ -28,10 +30,38 @@ button {
   cursor: pointer;
 }
 
-select {
+.select {
   position: absolute;
-  top: 18px;
-  height: 24px;
+  top: 42px;
+  left: 0;
+  width: 365px;
+  
+}
+
+.option{
+  position: relative;
   width: 100%;
-  visibility: hidden;
+  padding: 3px;
+  box-sizing: border-box;
+  border: 1px solid gray;
+  border-top: none;
+  cursor: pointer;
+}
+
+.option:hover {
+  background-color: lightblue;
+}
+
+.radio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(0 0 0 0);
+}
+
+.option-text {
+  font-size: 16px;
+  line-height: 18px;
+  text-align: justify;
 }
